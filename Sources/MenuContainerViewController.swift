@@ -51,8 +51,12 @@ open class MenuContainerViewController: UIViewController {
 }
 
 extension MenuContainerViewController: MenuViewControllerDelegate {
-    func menuController(_ menuController: MenuViewController, showContentController contentController: UIViewController) {
-        selectContentViewController(contentController)
+    func menuController(_ menuController: MenuViewController, showContentController contentController: UIViewController, modal: Bool) {
+        if modal {
+            currentContentViewController?.navigationController?.pushViewController(contentController, animated: true)
+        } else {
+            selectContentViewController(contentController)
+        }
     }
 }
 
